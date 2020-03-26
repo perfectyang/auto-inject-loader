@@ -8,28 +8,22 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.vue$/,
-        use: [
-          {
-            loader: 'vue-loader',
-            options: {
-              compilerOptions: {
-                preserveWhitespace: false
+        test: /\.js$/,
+        exclude: /node_modules/,
+        include: [resolve('src')],
+        use: ['thread-loader', 'cache-loader', {
+          loader: 'babel-loader',
+        }, {
+          loader: 'auto-inject-loader',
+          options: {
+            autoImport: [
+              {
+                name: 'localSocket',
+                paths: 'src/lib/core/index.js'
               }
-            }
-          },
-          {
-            loader: 'auto-inject-loader',
-            options: {
-              autoImport: [
-                {
-                  name: 'localSocket',
-                  paths: 'src/lib/core/index.js'
-                }
-              ]
-            }
+            ]
           }
-        ]
+        }]
       }
     ]
   }
@@ -46,7 +40,7 @@ name: 当前在页面使用的变量
 paths: 变量定义所在哪个文件路径下
 
 eg:
-#### 在vue组件页面的js部分生成如下
+#### 会在js部分生成如下
     import localSocket from 'src/lib/core/index.js'
 
 注意事项:
