@@ -17,8 +17,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github.com/perfectyang.git"
+    "url": "git+https://github.com/perfectyang/auto-inject-loader.git"
   },
+  "bugs": {
+    "url": "https://github.com/perfectyang/auto-inject-loader/issues"
+  },
+  "homepage": "https://github.com/perfectyang",
   "keywords": [
     "ast",
     "vue",
