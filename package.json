@@ -1,10 +1,10 @@
 {
   "name": "auto-inject-loader",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "Auto import the source what we need",
   "author": "perfectyang",
   "license": "ISC",
-  "main": "dist/cjs.js",
+  "main": "dist/index.js",
   "scripts": {
     "prebuild": "cross-env NODE_ENV=production babel src -d dist --copy-files",
     "build": "node node_modules/gulp/bin/gulp.js"
