@@ -18,19 +18,19 @@ function transtJs (code, options) {
     ]
   })
   let arr = []
+  const keys = autoImport.map(cur => cur.name)
   const tem = {}
   traverse(ast, {
     Identifier (path) {
-      autoImport.forEach(cur => {
-        if (path.node.name === cur.name && !(cur.name in tem)) {
-          arr.push(cur)
-          tem[cur.name] = cur.name
-        }
-      })
+      const name = path.node.name
+      if (keys.includes(name) && !(name in tem)) {
+        arr.push(name)
+        tem[name] = name
+      }
     }
   })
   if (arr.length) {
-    const importTpl = arr.map(cur => generateDeclaration(cur))
+    const importTpl = autoImport.filter(cur => arr.includes(cur.name)).map(obj => generateDeclaration(obj))
     ast.program.body.unshift(...importTpl)
   }
   return generate(ast).code
