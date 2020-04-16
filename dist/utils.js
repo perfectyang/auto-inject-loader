@@ -1,0 +1,1 @@
+"use strict";function isIncludes(s,e){for(var n,r=s.length;r--;)if(e(s[r])){n=s[r];break}return n}exports.isIncludes=isIncludes;

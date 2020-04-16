@@ -1,6 +1,6 @@
 {
   "name": "auto-inject-loader",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Auto import the source what we need",
   "author": "perfectyang",
   "license": "ISC",

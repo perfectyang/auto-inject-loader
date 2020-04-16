@@ -21,7 +21,6 @@ function generateDeclaration (url, names) {
   return t.importDeclaration(temArr, t.stringLiteral(url))
 }
 
-
 function transtJs (code, options) {
   const autoImport = options.autoImport
   const ast = parser.parse(code, {
@@ -47,9 +46,7 @@ function transtJs (code, options) {
     }
   })
   arr = arr.filter(cur => cur.names.length)
-  console.log('arr', arr)
   if (arr.length) { // 其中有 [[], [xx, xxxx]]
-    console.log('arr', arr)
     const importTpl = arr.map(({url, names}) => generateDeclaration(url, names))
     ast.program.body.unshift(...importTpl)
   }

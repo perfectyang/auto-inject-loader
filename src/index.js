@@ -2,6 +2,7 @@ let loaderUtils = require('loader-utils')
 let valiation = require('schema-utils')
 const transtJs = require('./transt')
 const {isIncludes} = require('./utils')
+const path = require('path')
 function loader (source) {
   let cb = this.async()
   let options = loaderUtils.getOptions(this)
@@ -14,9 +15,9 @@ function loader (source) {
     }
   }
   valiation(schema, options, 'auto-inject')
-
   const val = isIncludes(options.autoImport, (cur) => {
-    return (cur.basePath + '/' + cur.paths) === this.resourcePath
+    const curPath = path.join(cur.basePath, cur.paths)
+    return curPath === this.resourcePath
   })
   if (!val) {
     const outCode = transtJs(source, options)
